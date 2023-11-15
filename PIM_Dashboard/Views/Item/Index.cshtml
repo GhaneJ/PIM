@@ -1,0 +1,57 @@
+﻿@model IEnumerable<PIM_Dashboard.Models.Item>
+
+@{
+    ViewData["Title"] = "Index";
+}
+<partial name="_Notification" />
+
+<div class="container">
+    <form asp-controller="Item" asp-action="Index" method="get">
+        <div class="mt-5 mx-5">
+            <div class="p-1 bg-light rounded rounded-pill shadow-sm mb-3 mb-5 w-75">
+                <div class="input-group p-1">
+                    <input class="form-control border-0 bg-light" type="text" placeholder="Search.." name="itemName">
+                    <button type="submit" class="btn btn-link text-primary"><i class="fa fa-search"></i></button>
+                </div>
+            </div>
+
+            <div class="row">
+                @foreach (var item in Model)
+                {
+                    @if (item.ItemStatus != "PhasedOut")
+                    {
+                        <div class="col-md-3 mx-1 mb-2">
+                            <div class="card card-body align-items-center">
+                                <a class="text-decoration-none text-center text-black" asp-action="Edit" asp-route-itemName="@item.ItemName">
+                                    @if (item.ItemStatus == "PublishedOnEcom")
+                                    {
+                                        <img src="@("~/Image/Assets/green-tick.png")" asp-append-version="true" width="20px" height="20px" />
+                                    }
+                                    @if (item.ItemRetailPrice != null && item.ItemStatus == "EnrichmentComplete" || item.ItemStatus == "ReadyForEcom"
+                                    || item.ItemStatus == "SentToEcom" || item.ItemStatus == "PublishOnEcomFailed")
+                                    {
+                                        <img src="@("~/Image/Assets/blue-tick.png")" asp-append-version="true" width="20px" height="20px" />
+                                    }
+                                    <img src="@("~/Image/Item/"+item.ResourceFileName)" asp-append-version="true" width="200px" height="200px" />
+                                    @item.ItemName<br />
+                                    @item.ItemRetailPrice €
+                                </a>
+                            </div>
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="col-md-3 mx-1 mb-2">
+                            <div class="card card-body align-items-center">
+                                <a class="text-decoration-none text-center text-black" asp-action="Edit" asp-route-itemName="@item.ItemName">                                    
+                                    <img src="@("~/Image/Assets/default.png")" asp-append-version="true" width="230px" height="200px" />
+                                    @item.ItemName
+                                </a>
+                            </div>
+                        </div>
+                    }
+                }
+            </div>
+        </div>
+    </form>
+</div>

@@ -1,0 +1,117 @@
+﻿@model PIM_Dashboard.Models.Item
+
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Edit</h1>
+
+<h4>Item</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="ItemId" />
+            <div class="form-group">
+                <label asp-for="ItemName" class="control-label"></label>
+                <input asp-for="ItemName" class="form-control" />
+                <span asp-validation-for="ItemName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ItemStatus" class="control-label"></label>
+                <input asp-for="ItemStatus" class="form-control" />
+                <span asp-validation-for="ItemStatus" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ItemRetailPrice" class="control-label"></label>
+                <input asp-for="ItemRetailPrice" class="form-control" />
+                <span asp-validation-for="ItemRetailPrice" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ItemPackageType" class="control-label"></label>
+                <input asp-for="ItemPackageType" class="form-control" />
+                <span asp-validation-for="ItemPackageType" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ItemQuantityType" class="control-label"></label>
+                <input asp-for="ItemQuantityType" class="form-control" />
+                <span asp-validation-for="ItemQuantityType" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ItemPackageQuantity" class="control-label"></label>
+                <input asp-for="ItemPackageQuantity" class="form-control" />
+                <span asp-validation-for="ItemPackageQuantity" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ItemEngineType" class="control-label"></label>
+                <input asp-for="ItemEngineType" class="form-control" />
+                <span asp-validation-for="ItemEngineType" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ItemServiceInterval" class="control-label"></label>
+                <input asp-for="ItemServiceInterval" class="form-control" />
+                <span asp-validation-for="ItemServiceInterval" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ItemBrandColor" class="control-label"></label>
+                <input asp-for="ItemBrandColor" class="form-control" />
+                <span asp-validation-for="ItemBrandColor" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ItemBaseColor" class="control-label"></label>
+                <input asp-for="ItemBaseColor" class="form-control" />
+                <span asp-validation-for="ItemBaseColor" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ItemNutritionalFacts" class="control-label"></label>
+                <input asp-for="ItemNutritionalFacts" class="form-control" />
+                <span asp-validation-for="ItemNutritionalFacts" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ItemFoodGroup" class="control-label"></label>
+                <input asp-for="ItemFoodGroup" class="form-control" />
+                <span asp-validation-for="ItemFoodGroup" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ItemSize" class="control-label"></label>
+                <input asp-for="ItemSize" class="form-control" />
+                <span asp-validation-for="ItemSize" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ItemCategory" class="control-label"></label>
+                <input asp-for="ItemCategory" class="form-control" />
+                <span asp-validation-for="ItemCategory" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ItemForceSend" class="control-label"></label>
+                <input asp-for="ItemForceSend" class="form-control" />
+                <span asp-validation-for="ItemForceSend" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ItemCreated" class="control-label"></label>
+                <input asp-for="ItemCreated" class="form-control" />
+                <span asp-validation-for="ItemCreated" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ResourceFileName" class="control-label"></label>
+                <input asp-for="ResourceFileName" class="form-control" />
+                <span asp-validation-for="ResourceFileName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ResourceImageTitle" class="control-label"></label>
+                <input asp-for="ResourceImageTitle" class="form-control" />
+                <span asp-validation-for="ResourceImageTitle" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+

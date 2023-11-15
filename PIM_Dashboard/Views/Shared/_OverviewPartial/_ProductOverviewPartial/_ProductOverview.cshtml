@@ -1,0 +1,73 @@
+﻿@model PIM_Dashboard.Models.Product
+
+<dl class="row mt-5">
+    <dt>
+        Product Name
+    </dt>
+    <dd>
+        @Model.ProductName
+    </dd>
+    <dt>
+        Date of Creation
+    </dt>
+    <dd>
+        @Model.ProductCreated
+    </dd>
+    <dt>
+        Product Status
+    </dt>
+    <dd>
+        @Model.ProductLifecycleStatus
+    </dd>
+    <dt>
+        Product Short Description
+    </dt>
+    <dd>
+        @Model.ProductShortDescription
+    </dd>
+    <dt>
+        Product Long Description
+    </dt>
+    <dd>
+        @Model.ProductLongDescription
+    </dd>
+    <dt>
+        Product Manager
+    </dt>
+    <dd>
+        @Model.ProductManager
+    </dd>    
+</dl>
+
+<!-- Button trigger modal -->
+<div class="row">
+    <a asp-action="Index" class="btn btn-secondary mt-3 w-25 mx-3">Back</a>
+    @if (User.IsInRole("Admin"))
+    {
+        <a class="btn btn-danger mt-3 w-25" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+            Delete
+        </a>
+    }
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="staticBackdropLabel">Delete Confirmation</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                Are you sure you want to delete this product?
+            </div>
+            <div class="modal-footer">
+                <form asp-action="Delete">
+                    <input type="hidden" asp-for="ProductName" />
+                    <a class="btn btn-secondary" data-bs-dismiss="modal">Close</a>
+                    <input type="submit" value="Delete" class="btn btn-danger" />
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

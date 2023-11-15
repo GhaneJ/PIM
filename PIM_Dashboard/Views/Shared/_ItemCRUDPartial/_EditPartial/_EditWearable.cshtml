@@ -1,0 +1,128 @@
+﻿@model PIM_Dashboard.Models.Item
+
+<form asp-action="Edit" method="post" enctype="multipart/form-data">
+    <div class="row justify-content-around mt-5">
+        <div class="col-md-4">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="ItemId" />
+            <input type="hidden" asp-for="ResourceFileName" />
+            <div class="form-group" hidden>
+                <label asp-for="ItemPackageType" class="control-label"></label>
+                <input asp-for="ItemPackageType" value="Wearable" class="form-control" />
+                <span asp-validation-for="ItemPackageType" class="text-danger"></span>
+            </div>
+            <div class="form-group" hidden>
+                <label asp-for="ItemCreated" class="control-label"></label>
+                <input asp-for="ItemCreated" value="@Model.ItemCreated" class="form-control" />
+                <span asp-validation-for="ItemCreated" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ItemName" class="control-label"></label>
+                <input asp-for="ItemName" class="form-control" />
+                <span asp-validation-for="ItemName" class="text-danger"></span>
+            </div>
+            <div class="form-group mb-5">
+                <label asp-for="ItemStatus"></label><br />
+                <select asp-for="ItemStatus" class="w-50" name="ItemStatus">
+                    <option value="null" selected>Select an option</option>
+                    <option value="New">New</option>
+                    <option value="EnrichmentOngoing">Enrichment Ongoing</option>
+                    <option value="EnrichmentComplete">Enrichment Complete</option>
+                    <option value="ReadyForEcom">Ready For Ecom</option>
+                    <option value="SentToEcom">Sent To Ecom</option>
+                    <option value="PublishedOnEcom">Published On Ecom</option>
+                    <option value="PublishOnEcomFailed">Publish On Ecom Failed</option>
+                    <option value="PhasedOut">Phased Out</option>
+                </select>
+            </div>
+            <div class="form-group mb-3">
+                <label asp-for="ItemBaseColor"></label><br />
+                <select asp-for="ItemBaseColor" class="form-control w-100" name="ItemBaseColor">
+                    <option value=@string.Empty selected>Select a color</option>
+                    <option value="Orange">Orange</option>
+                    <option value="Green">Green</option>
+                    <option value="Blue">Blue</option>
+                    <option value="Red">Red</option>
+                    <option value="White">White</option>
+                    <option value="Black">Black</option>
+                    <option value="Brown">Brown</option>
+                    <option value="Yellow">Yellow</option>
+                </select>
+                <span asp-validation-for="ItemBaseColor" class="text-danger"></span>
+            </div>
+            <div class="form-group mb-3">
+                <label asp-for="ItemBrandColor"></label><br />
+                <select asp-for="ItemBrandColor" class="form-control w-100" name="ItemBrandColor">
+                    <option value=@string.Empty selected>Select a color</option>
+                    <option value="GoldenGateOrange">Golden Gate Orange</option>
+                    <option value="BrooklynBridgeGreen">Brooklyn Bridge Green</option>
+                    <option value="TingStadTunnelBlue">TingStad Tunnel Blue</option>
+                    <option value="CrimsonRed">Crimson Red</option>
+                    <option value="MoonRiverWhite">Moon River White</option>
+                    <option value="PitchBlack">Pitch Black</option>
+                    <option value="MountBrown">Mount Brown</option>
+                    <option value="SunnyYellow">Sunny Yellow</option>
+                </select>
+                <span asp-validation-for="ItemBrandColor" class="text-danger"></span>
+            </div>
+            <div class="form-group mb-3">
+                <label asp-for="ItemSize"></label><br />
+                <select asp-for="ItemSize" class="form-control w-25" name="ItemSize">
+                    <option value=@string.Empty selected>Select a size</option>
+                    <option value="XS">XS</option>
+                    <option value="S">S</option>
+                    <option value="M">M</option>
+                    <option value="L">L</option>
+                    <option value="XL">XL</option>
+                </select>
+                <span asp-validation-for="ItemSize" class="text-danger"></span>
+            </div>
+            <div class="form-group mb-3">
+                <span>Force Send:    </span><br />
+                <input asp-for="ItemForceSend" type="radio" value=@string.Empty />
+                <label asp-for="ItemForceSend">Not Set</label>
+                <span>    </span>
+                <input asp-for="ItemForceSend" type="radio" value="True" />
+                <label asp-for="ItemForceSend">True</label>
+                <span>    </span>
+                <input asp-for="ItemForceSend" type="radio" value="False" />
+                <label asp-for="ItemForceSend">False</label>
+                <span asp-validation-for="ItemForceSend" class="text-danger"></span>
+            </div>
+            <div class="form-group mb-3">
+                <span>Category: </span><br />
+                <input asp-for="ItemCategory" type="radio" value="Pants" />
+                <label asp-for="ItemCategory">Pants</label>
+                <span>    </span>
+                <input asp-for="ItemCategory" type="radio" value="Shirts" />
+                <label asp-for="ItemCategory">Shirts</label>
+                <span>    </span>
+                <input asp-for="ItemCategory" type="radio" value="Underwear" />
+                <label asp-for="ItemCategory">Underwear</label>
+                <span asp-validation-for="ItemCategory" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <h4 class="pt-5 create-title">Item image</h4>
+            <hr />
+            <div class="col-sm-10">
+                <img class="room-image" src="@("~/Image/Item/"+Model.ResourceFileName)" asp-append-version="true" width="250px" height="250px">
+            </div>
+
+            <label class="ml-2 mt-2">
+                Change photo
+                <input type="checkbox" id="change_image" />
+            </label>
+            <div class="form-group" id="image_file">
+                <label asp-for="ResourceImageFile" class="control-label"></label>
+                <input asp-for="ResourceImageFile" accept="image/*" />
+                <span asp-validation-for="ResourceImageFile" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <a asp-action="Index" asp-controller="Item" class="btn btn-secondary mt-3 w-25 mx-3">Back</a>
+                <input type="submit" value="Update" class="btn btn-primary mt-3 w-25" />
+                
+            </div>
+        </div>
+    </div>
+</form>

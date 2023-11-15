@@ -1,0 +1,48 @@
+﻿@model IEnumerable<PIM_Dashboard.Models.Resource>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Index</h1>
+
+@if (User.IsInRole("Admin"))
+{
+    <p>
+        <a asp-action="Create">Create New</a>
+    </p>
+}
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ResourceFileName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ResourceImageTitle)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ResourceFileName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ResourceImageTitle)
+            </td>
+            <td>
+                    @if (User.IsInRole("Admin"))
+                    {
+                        <a asp-action="Edit" asp-route-id="@item.ResourceId">Edit</a>
+                        <a asp-action="Delete" asp-route-id="@item.ResourceId">Delete</a>
+                    }
+                <a asp-action="Details" asp-route-id="@item.ResourceId">Details</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

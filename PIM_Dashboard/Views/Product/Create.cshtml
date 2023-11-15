@@ -1,0 +1,56 @@
+﻿@model PIM_Dashboard.Models.Product
+
+<h1>Create a new Product</h1>
+<hr />
+
+<form asp-action="Create" enctype="multipart/form-data">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <div class="form-group" hidden>
+        <label asp-for="ProductCreated" class="control-label"></label>
+        <input asp-for="ProductCreated" value="@(DateTime.Now)" class="form-control" />
+        <span asp-validation-for="ProductCreated" class="text-danger"></span>
+    </div>
+    <div class="form-group mb-3">
+        <label asp-for="ProductName" class="control-label"></label>
+        <input asp-for="ProductName" class="form-control w-25" />
+        <span asp-validation-for="ProductName" class="text-danger"></span>
+    </div>
+    <div class="form-group mb-5">
+        <label asp-for="ProductLifecycleStatus"></label><br />
+        <select asp-for="ProductLifecycleStatus" class="form-control w-25" name="ProductLifecycleStatus">
+            <option value=@string.Empty selected>Select an option</option>
+            <option value="PreProduction">Pre-production</option>
+            <option value="PreSales">Pre-sales</option>
+            <option value="Active">Active</option>
+            <option value="PhaseOut">Phase-out</option>
+            <option value="Inactive">Inactive</option>
+            <option value="Approved">Approved</option>
+        </select>
+        <span asp-validation-for="ProductLifecycleStatus" class="text-danger"></span>
+    </div>
+    <div class="form-group mb-3">
+        <label asp-for="ProductShortDescription" class="control-label"></label>
+        <input asp-for="ProductShortDescription" class="form-control w-25" />
+        <span asp-validation-for="ProductShortDescription" class="text-danger"></span>
+    </div>
+    <div class="form-group mb-3">
+        <label asp-for="ProductLongDescription" class="control-label"></label>
+        <input asp-for="ProductLongDescription" class="form-control" />
+        <span asp-validation-for="ProductLongDescription" class="text-danger"></span>
+    </div>
+    <div class="form-group mb-3">
+        <label asp-for="ProductManager" class="control-label"></label>
+        <input asp-for="ProductManager" class="form-control w-25" />
+        <span asp-validation-for="ProductManager" class="text-danger"></span>
+    </div>
+    <div class="form-group mb-5">
+        <label asp-for="ResourceImageFile" class="control-label"></label>
+        <input asp-for="ResourceImageFile" accept="image/*" />
+        <span asp-validation-for="ResourceImageFile" class="text-danger"></span>
+    </div>
+    <div class="form-group mb-2">
+        <a asp-action="Index" class="btn btn-secondary mt-3 mx-3">Back</a>
+        <input type="submit" value="Create" class="btn btn-primary" />
+    </div>
+</form>
+

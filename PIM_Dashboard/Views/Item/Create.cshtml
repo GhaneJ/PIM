@@ -1,0 +1,100 @@
+﻿@model PIM_Dashboard.Models.Item
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create a new Item</h1>
+<hr />
+<nav>
+    <div class="nav nav-pills mt-5" id="nav-tab" role="tablist">
+        <button class="nav-link active" id="nav-default-tab" data-bs-toggle="tab" data-bs-target="#nav-default" type="button" role="tab" aria-controls="nav-default" aria-selected="true">Select Item Type</button>
+        <button class="nav-link" id="nav-foodtruck-tab" data-bs-toggle="tab" data-bs-target="#nav-foodtruck" type="button" role="tab" aria-controls="nav-foodtruck" aria-selected="true">Food Truck Item</button>
+        <button class="nav-link" id="nav-consumable-tab" data-bs-toggle="tab" data-bs-target="#nav-consumable" type="button" role="tab" aria-controls="nav-consumable" aria-selected="false">Consumable Item</button>
+        <button class="nav-link" id="nav-wearable-tab" data-bs-toggle="tab" data-bs-target="#nav-wearable" type="button" role="tab" aria-controls="nav-wearable" aria-selected="false">Wearable Item</button>
+    </div>
+</nav>
+
+@*Default option, Create page*@
+
+<div class="tab-content" id="nav-tabContent">
+    <div class="tab-pane fade show active" id="nav-default" role="tabpanel" aria-labelledby="nav-default-tab">
+        <span class="text-center mt-5">Select one of the item types above</span> 
+        <div>
+            <a asp-action="Index" class="btn btn-secondary mt-3 ml-3">Back To Items</a>
+        </div>
+    </div>
+
+
+@*Food Truck Tab Items Create page*@
+
+
+    <div class="tab-pane fade" id="nav-foodtruck" role="tabpanel" aria-labelledby="nav-foodtruck-tab">
+        <div class="row">
+            <div class="mt-5 col-md-4">
+                <partial name="\\_ItemCRUDPartial\\_CreatePartial\\_CreateTruck" model="Model" />
+            </div>
+        </div>
+        <div>
+            <a asp-action="Index" class="btn btn-secondary mt-3 ml-3">Back To Items</a>
+        </div>
+    </div>
+
+
+    @*Consumable Tab Items Create page*@
+
+
+    <div class="tab-pane fade" id="nav-consumable" role="tabpanel" aria-labelledby="nav-consumable-tab">
+        <div class="row">
+            <div class="mt-5 col-md-4">
+                <partial name="\\_ItemCRUDPartial\\_CreatePartial\\_CreateConsumable" model="Model" />
+            </div>
+        </div>
+        <div>
+            <a asp-action="Index" class="btn btn-secondary mt-3 ml-3">Back To Items</a>
+        </div>
+    </div>
+
+
+    @*Wearable Tab Items Create page*@
+
+
+    <div class="tab-pane fade" id="nav-wearable" role="tabpanel" aria-labelledby="nav-wearable-tab">
+        <div class="row">
+            <div class="mt-5 col-md-4">
+                <partial name="\\_ItemCRUDPartial\\_CreatePartial\\_CreateWearable" model="Model" />
+            </div>
+        </div>
+        <div>
+            <a asp-action="Index" class="btn btn-secondary mt-3 ml-3">Back To Items</a>
+        </div>
+    </div>
+</div>
+
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+    @{
+        <script>
+            let checkbox = document.getElementById("change_image")
+            /*let imageName = document.getElementById("image_name")*/
+            let imageFile = document.getElementById("image_file")
+
+            imageFile.style.display = "none";
+
+            checkbox.addEventListener('change', function() {
+                if (this.checked) {
+                    /*console.log("Checkbox is checked..");*/
+                    /*imageName.style.display = "none";*/
+                    imageFile.style.display = "block";
+                } else {
+                    /*console.log("Checkbox is not checked..");*/
+                    imageFile.style.display = "none";
+                    /*imageName.style.display = "block";*/
+                }
+            });
+        </script>
+    }
+    }

@@ -1,0 +1,111 @@
+﻿@model PIM_Dashboard.Models.Item
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h4>Item</h4>
+<hr />
+<nav>
+    <div class="nav nav-tabs" id="nav-tab" role="tablist">
+        <button class="nav-link active" id="nav-overview-tab" data-bs-toggle="tab" data-bs-target="#nav-overview" type="button" role="tab" aria-controls="nav-overview" aria-selected="true">Overview</button>
+        @if (User.IsInRole("Admin"))
+        {
+            <button class="nav-link" id="nav-edit-tab" data-bs-toggle="tab" data-bs-target="#nav-edit" type="button" role="tab" aria-controls="nav-edit" aria-selected="false">Edit</button>
+        }
+    </div>
+</nav>
+
+                                                        @* Overview Tab *@
+
+<div class="tab-content" id="nav-tabContent">
+    <div class="tab-pane fade show active" id="nav-overview" role="tabpanel" aria-labelledby="nav-overview-tab">
+        <div class="row justify-content-around">
+            <div class="col-md-4">
+
+                @{
+                    if (Model.ItemPackageType == "Truck")
+                    {
+                        <partial name="\\_OverviewPartial\\_ItemOverviewPartial\\_OverviewTruck" model="Model" />
+                    }
+                }
+
+                @{
+                    if (Model.ItemPackageType == "Consumable")
+                    {
+                        <partial name="\\_OverviewPartial\\_ItemOverviewPartial\\_OverviewConsumable" model="Model" />
+                    }
+                }
+
+                @{
+                    if (Model.ItemPackageType == "Wearable")
+                    {
+                        <partial name="\\_OverviewPartial\\_ItemOverviewPartial\\_OverviewWearable" model="Model" />
+                    }
+                }
+
+            </div>
+            <div class="col-md-5">
+                <div class="col-sm-10">
+                    <h4 class="pt-5 create-title">Item image</h4>
+                    <hr />
+                    <img class="room-image" src="@("~/Image/Item/"+Model.ResourceFileName)" asp-append-version="true" width="300px" height="250px" />
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+                                                        @* Edit Tab *@
+
+
+    <div class="tab-pane fade show" id="nav-edit" role="tabpanel" aria-labelledby="nav-edit-tab">
+        @{
+            if (Model.ItemPackageType == "Truck")
+            {
+                <partial name="\\_ItemCRUDPartial\\_EditPartial\\_EditTruck" model="Model" />
+            }
+        }
+
+        @{
+            if (Model.ItemPackageType == "Consumable")
+            {
+                <partial name="\\_ItemCRUDPartial\\_EditPartial\\_EditConsumable" model="Model" />
+            }
+        }
+
+        @{
+            if (Model.ItemPackageType == "Wearable")
+            {
+                <partial name="\\_ItemCRUDPartial\\_EditPartial\\_EditWearable" model="Model" />
+            }
+        }
+    </div>
+</div>
+
+ @section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+    @{
+        <script>
+            let checkbox = document.getElementById("change_image")
+            /*let imageName = document.getElementById("image_name")*/
+            let imageFile = document.getElementById("image_file")
+
+            imageFile.style.display = "none";
+
+            checkbox.addEventListener('change', function() {
+                if (this.checked) {
+                    /*console.log("Checkbox is checked..");*/
+                    /*imageName.style.display = "none";*/
+                    imageFile.style.display = "block";
+                } else {
+                    /*console.log("Checkbox is not checked..");*/
+                    imageFile.style.display = "none";
+                    /*imageName.style.display = "block";*/
+                }
+            });
+        </script>
+    }
+    }

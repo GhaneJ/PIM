@@ -1,0 +1,99 @@
+﻿@model PIM_Dashboard.Models.Product
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+<h4>Product</h4>
+<hr />
+
+<form asp-action="Edit">
+    <div class="row">
+        <div class="col-md-4">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="ProductId" />
+            <div class="form-group">
+                <label asp-for="ProductName" class="control-label"></label>
+                <input asp-for="ProductName" class="form-control" />
+                <span asp-validation-for="ProductName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ProductLifecycleStatus" class="control-label"></label>
+                <input asp-for="ProductLifecycleStatus" class="form-control" />
+                <span asp-validation-for="ProductLifecycleStatus" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ProductShortDescription" class="control-label"></label>
+                <input asp-for="ProductShortDescription" class="form-control" />
+                <span asp-validation-for="ProductShortDescription" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ProductLongDescription" class="control-label"></label>
+                <input asp-for="ProductLongDescription" class="form-control" />
+                <span asp-validation-for="ProductLongDescription" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ProductManager" class="control-label"></label>
+                <input asp-for="ProductManager" class="form-control" />
+                <span asp-validation-for="ProductManager" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ResourceFileName" class="control-label"></label>
+                <input asp-for="ResourceFileName" class="form-control" />
+                <span asp-validation-for="ResourceFileName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ResourceImageTitle" class="control-label"></label>
+                <input asp-for="ResourceImageTitle" class="form-control" />
+                <span asp-validation-for="ResourceImageTitle" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <h4 class="pt-5 create-title">Item image</h4>
+            <hr />
+            <div class="col-sm-10">
+                <img class="room-image" src="@("~/Image/Product/"+Model.ResourceFileName)" asp-append-version="true" width="250px" height="250px">
+            </div>
+
+            <label class="ml-2 mt-2">
+                Change photo
+                <input type="checkbox" id="change_image" />
+            </label>
+            <div class="form-group" id="image_file">
+                <label asp-for="ResourceImageFile" class="control-label"></label>
+                <input asp-for="ResourceImageFile" accept="image/*" />
+                <span asp-validation-for="ResourceImageFile" class="text-danger"></span>
+            </div>
+        </div>
+    </div>
+</form>
+
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+    @{
+        <script>
+            let checkbox = document.getElementById("change_image")
+            /*let imageName = document.getElementById("image_name")*/
+            let imageFile = document.getElementById("image_file")
+
+            imageFile.style.display = "none";
+
+            checkbox.addEventListener('change', function() {
+                if (this.checked) {
+                    /*console.log("Checkbox is checked..");*/
+                    /*imageName.style.display = "none";*/
+                    imageFile.style.display = "block";
+                } else {
+                    /*console.log("Checkbox is not checked..");*/
+                    imageFile.style.display = "none";
+                    /*imageName.style.display = "block";*/
+                }
+            });
+        </script>
+    }
+    }

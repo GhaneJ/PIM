@@ -1,0 +1,204 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - PIM</title>
+    <!-- Google fonts - Poppins -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,700">
+    <!-- Choices CSS-->
+    <link rel="stylesheet" href="/vendor/choices.js/public/assets/styles/choices.min.css">
+    <!-- theme stylesheet-->
+    <link rel="stylesheet" href="/css/style.default.css" id="theme-stylesheet">
+    <!-- Custom stylesheet - for your changes-->
+    <link rel="stylesheet" href="/css/custom.css">
+    <!-- Favicon-->
+    <link rel="shortcut icon" href="~/icons/icon.ico">
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" />
+</head>
+<body>
+    <div class="page bg-white bg-gradient">
+        <!-- Main Navbar-->
+        <header class="header z-index-50">
+            <nav class="navbar bg-success bg-gradient py-3 px-0 shadow-sm text-white position-relative">
+                <!-- Sidebar menu Shrinker -->
+                <div class="search-box shadow-sm">
+                    <button class="dismiss d-flex align-items-center">
+                        <svg class="svg-icon svg-icon-heavy">
+                            <use xlink:href="#close-1"> </use>
+                        </svg>
+                    </button>
+                </div>
+                <div class="container-fluid w-100">
+                    <div class="navbar-holder d-flex align-items-center justify-content-between w-100">
+                        <!-- Navbar Header-->
+                        <div class="navbar-header">
+                            <!-- Navbar Brand -->
+                            <div class="brand-text d-none d-lg-inline-block">
+                                <span class="text-red text-lg"><strong>P.I.M </strong></span><i><strong class=" text-info text-lg">SystemS       </strong></i>
+                            </div>
+                            <div class="brand-text d-none d-sm-inline-block d-lg-none"><strong>BD</strong></div>
+
+                            <!-- Toggle Button--><a class="menu-btn active" id="toggle-btn" href="#"><span></span><span></span><span></span></a>
+                        </div>
+                        <!-- Navbar Menu -->
+                        <ul class="nav-menu list-unstyled d-flex flex-md-row align-items-md-center">
+                            <!-- Search-->
+                            <li class="nav-item d-flex align-items-center">
+                                <a id="search" href="#"></a>
+                            </li>
+                            <!--   Entities dropdown    -->
+                            @if (User.IsInRole("Admin"))
+                            {
+                               <li class="nav-item dropdown">
+                                <a class="nav-link text-white dropdown-toggle d-flex align-items-center" id="entities" href="#" data-bs-toggle="dropdown" aria-expanded="false"><span class="d-none d-sm-inline-block">Create Entities</span></a>
+                                <ul class="dropdown-menu dropdown-menu-end mt-3 shadow-sm" aria-labelledby="entities">
+                                    <li>
+                                        <a class="dropdown-item" rel="nofollow" asp-area="" asp-controller="Item" asp-action="Create">
+                                            <img class="img-thumbnail img-fluid" src="~/Image/Assets/Item.png" asp-append-version="true" width="32px" height="32px">
+                                            Items
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-item" rel="nofollow" asp-area="" asp-controller="Product" asp-action="Create">
+                                            <img class="image-thumbnail img-fluid" src="/Image/Assets/Product.png" asp-append-version="true" width="32px" height="32px" />
+                                            Products
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-item" rel="nofollow" asp-area="" asp-controller="Resource" asp-action="Create">
+                                            <img class="img-thumbnail img-fluid" src="~/Image/Assets/Resource.png" asp-append-version="true" width="32px" height="32px">
+                                            Resources
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li> 
+                            }                            
+                        </ul>
+                        <partial name="_LoginPartial" />
+                    </div>
+                </div>
+            </nav>
+        </header>
+
+        <div class="page-content d-flex align-items-stretch">
+            <!-- Side Navbar -->
+            <nav class="side-navbar z-index-40 bg-white bg-gradient">
+                <!-- Sidebar Header-->
+                <div class="sidebar-header d-flex align-items-center py-4 px-3">
+                    <img class="shadow-0 img-fluid rounded-circle" src="~/Image/Assets/PIM-LOGO.png" alt="...">
+                </div>
+                <!-- Sidebar Navigation Menus--><span class="text-uppercase text-white text-xs letter-spacing-0 mx-3 px-2 heading">Main</span>
+                <ul class="list-unstyled py-4">
+                    <li class="sidebar-item active">
+                        <a class="sidebar-link" asp-controller="Home" asp-action="Index">
+                            <svg class="svg-icon svg-icon-sm svg-icon-heavy me-xl-2">
+                                <use xlink:href="#real-estate-1"> </use>
+                            </svg>Home
+                        </a>
+                    </li>
+                    @if (User.IsInRole("Admin"))
+                    {
+                        <li class="sidebar-item">
+                            <a class="sidebar-link" href="#exampledropdownDropdown" data-bs-toggle="collapse">
+                                <svg class="svg-icon svg-icon-sm svg-icon-heavy me-xl-2">
+                                    <use xlink:href="#browser-window-1"> </use>
+                                </svg>Create Entities
+                            </a>
+                            <ul class="collapse list-unstyled " id="exampledropdownDropdown">
+                                <li>
+                                    <a class="sidebar-link" asp-controller="Item" asp-action="Create">
+                                        <img class="img-thumbnail img-fluid mx-2" src="~/Image/Assets/Item.png" asp-append-version="true" width="32px" height="32px">
+                                        Items
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="sidebar-link" asp-controller="Product" asp-action="Create">
+                                        <img class="img-thumbnail img-fluid mx-2" src="~/Image/Assets/Product.png" asp-append-version="true" width="32px" height="32px">
+                                        Products
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="sidebar-link" asp-controller="Resource" asp-action="Create">
+                                        <img class="img-thumbnail img-fluid mx-2" src="~/Image/Assets/Resource.png" asp-append-version="true" width="32px" height="32px">
+                                        Resources
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                    }
+                </ul>
+            </nav>
+            <div class="content-inner w-100">
+                <!-- Page Header-->
+                <header class="bg-white shadow-sm px-4 py-3 z-index-20">
+                    <div class="container-fluid px-0">
+                        <h2 class="mb-0 p-1">Dashboard</h2>
+                    </div>
+                </header>
+
+                <div class="container">
+                    <main role="main" class="pb-3">
+                        @RenderBody()
+                    </main>
+                </div>
+
+                <!-- Page Footer-->
+                <footer class="position-fixed bottom-0 bg-success bg-gradient text-orange text-center py-3 w-100 text-xs" id="footer">
+                    <div class="container-fluid">
+                        <div class="row gy-2">
+                            <div class="col-sm-6 text-sm-start">
+                                <p class="mb-0">P.I.M SystemS 2022-</p>
+                            </div>
+                            <div class="col-sm-6 text-sm-end">
+                                <p class="mb-0">Design by <a href="https://bootstrapious.com/p/admin-template" class="text-white text-decoration-none">Bootstrapious</a></p>
+                                <!-- Please do not remove the backlink to us unless you support further theme's development at https://bootstrapious.com/donate. It is part of the license conditions. Thank you for understanding :)-->
+                            </div>
+                        </div>
+                    </div>
+                </footer>
+            </div>
+        </div>
+    </div>
+    <!-- JavaScript files-->
+    <script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="/vendor/chart.js/Chart.min.js"></script>
+    <script src="/vendor/just-validate/js/just-validate.min.js"></script>
+    <script src="/vendor/choices.js/public/assets/scripts/choices.min.js"></script>
+    <script src="/js/charts-home.js"></script>
+    <!-- Main File-->
+    <script src="js/front.js"></script>
+    <script>
+        // ------------------------------------------------------- //
+        //   Inject SVG Sprite -
+        //   see more here
+        //   https://css-tricks.com/ajaxing-svg-sprite/
+        // ------------------------------------------------------ //
+        function injectSvgSprite(path) {
+
+            var ajax = new XMLHttpRequest();
+            ajax.open("GET", path, true);
+            ajax.send();
+            ajax.onload = function(e) {
+                var div = document.createElement("div");
+                div.className = 'd-none';
+                div.innerHTML = ajax.responseText;
+                document.body.insertBefore(div, document.body.childNodes[0]);
+            }
+        }
+        // this is set to BootstrapTemple website as you cannot
+        // inject local SVG sprite (using only 'icons/orion-svg-sprite.svg' path)
+        // while using file:// protocol
+        // pls don't forget to change to your domain :)
+        injectSvgSprite('https://bootstraptemple.com/files/icons/orion-svg-sprite.svg');
+
+
+    </script>
+    <!-- FontAwesome CSS - loading as last, so it doesn't block rendering-->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+    @await RenderSectionAsync("Scripts", required:false)
+</body>
+</html>

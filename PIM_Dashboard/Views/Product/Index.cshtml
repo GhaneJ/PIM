@@ -1,0 +1,32 @@
+﻿@model IEnumerable<PIM_Dashboard.Models.Product>
+
+@{
+    ViewData["Title"] = "ProductIndex";
+}
+
+<div class="container">
+    <form asp-controller="Product" asp-action="Index" method="get">
+        <div class="mt-5 mx-5">
+            <div class="p-1 bg-light rounded rounded-pill shadow-sm mb-3 mb-5 w-75">
+                <div class="input-group p-1">
+                    <input class="form-control border-0 bg-light" type="text" placeholder="Search.." name="productName">
+                    <button type="submit" class="btn btn-link text-primary"><i class="fa fa-search"></i></button>
+                </div>
+            </div>
+
+            <div class="row">
+                @foreach (var product in Model)
+                {
+                    <div class="col-md-3 mx-1 mb-2">
+                        <div class="card card-body align-items-center">
+                            <a class="text-decoration-none text-center text-black" asp-action="Details" asp-route-productName="@product.ProductName">
+                                <img class="rounded mx-auto d-block mt-3" src="@("~/Image/Product/"+product.ResourceFileName)" asp-append-version="true" width="155px" height="125px" />
+                                @product.ProductName
+                            </a>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </form>
+</div>

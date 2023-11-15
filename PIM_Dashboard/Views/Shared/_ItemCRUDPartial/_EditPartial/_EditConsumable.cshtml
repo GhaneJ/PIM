@@ -1,0 +1,107 @@
+﻿@model PIM_Dashboard.Models.Item
+
+<form asp-action="Edit" method="post" enctype="multipart/form-data">
+    <div class="row justify-content-around mt-5">
+        <div class="col-md-4">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="ItemId" />
+            <input type="hidden" asp-for="ResourceFileName" />
+            <div class="form-group" hidden>
+                <label asp-for="ItemPackageType" class="control-label"></label>
+                <input asp-for="ItemPackageType" value="Consumable" class="form-control" />
+                <span asp-validation-for="ItemPackageType" class="text-danger"></span>
+            </div>
+            <div class="form-group" hidden>
+                <label asp-for="ItemCreated" class="control-label"></label>
+                <input asp-for="ItemCreated" value="@Model.ItemCreated" class="form-control" />
+                <span asp-validation-for="ItemCreated" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ItemName" class="control-label"></label>
+                <input asp-for="ItemName" class="form-control" />
+                <span asp-validation-for="ItemName" class="text-danger"></span>
+            </div>
+            <div class="form-group mb-3">
+                <label asp-for="ItemStatus"></label><br />
+                <select asp-for="ItemStatus" class="w-60" name="ItemStatus">
+                    <option value="null" selected>Select an option</option>
+                    <option value="New">New</option>
+                    <option value="EnrichmentOngoing">Enrichment Ongoing</option>
+                    <option value="EnrichmentComplete">Enrichment Complete</option>
+                    <option value="ReadyForEcom">Ready For Ecom</option>
+                    <option value="SentToEcom">Sent To Ecom</option>
+                    <option value="PublishedOnEcom">Published On Ecom</option>
+                    <option value="PublishOnEcomFailed">Failed to publish on Ecom</option>
+                    <option value="PhasedOut">Phased Out</option>
+                </select>
+            </div>
+            <div class="form-group mb-3">
+                <span>Quantity Type: </span><br />
+                <input asp-for="ItemQuantityType" type="radio" value="NotSet" />
+                <label asp-for="ItemQuantityType">Not Set</label>
+                <span>  </span>
+                <input asp-for="ItemQuantityType" type="radio" value="Single" />
+                <label asp-for="ItemQuantityType">Single</label>
+                <span>  </span>
+                <input asp-for="ItemQuantityType" type="radio" value="Multi" />
+                <label asp-for="ItemQuantityType">Multi</label>
+                <span asp-validation-for="ItemQuantityType" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ItemPackageQuantity" class="control-label"></label>
+                <input asp-for="ItemPackageQuantity" class="form-control w-25" />
+                <span asp-validation-for="ItemPackageQuantity" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ItemNutritionalFacts" class="control-label"></label>
+                <input asp-for="ItemNutritionalFacts" class="form-control" />
+                <span asp-validation-for="ItemNutritionalFacts" class="text-danger"></span>
+            </div>
+            <div class="form-group mb-3">
+                <span>Food Group: </span>
+                <input asp-for="ItemFoodGroup" type="radio" value="Fruits" />
+                <label asp-for="ItemFoodGroup">Fruits</label>
+                <span>  </span>
+                <input asp-for="ItemFoodGroup" type="radio" value="Dairy" />
+                <label asp-for="ItemFoodGroup">Dairy</label>
+                <span>  </span>
+                <input asp-for="ItemFoodGroup" type="radio" value="Bread" />
+                <label asp-for="ItemFoodGroup">Bread</label>
+                <span asp-validation-for="ItemFoodGroup" class="text-danger"></span>
+            </div>
+            <div class="form-group mb-3">
+                <span>Force Send to Ecom: </span><br />
+                <input asp-for="ItemForceSend" type="radio" value="NotSet" />
+                <label asp-for="ItemForceSend">Not Set</label>
+                <span>  </span>
+                <input asp-for="ItemForceSend" type="radio" value="True" />
+                <label asp-for="ItemForceSend">True</label>
+                <span>  </span>
+                <input asp-for="ItemForceSend" type="radio" value="False" />
+                <label asp-for="ItemForceSend">False</label>
+                <span asp-validation-for="ItemForceSend" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <h4 class="pt-5 create-title">Item image</h4>
+            <hr />
+            <div class="col-sm-10">
+                <img class="room-image" src="@("~/Image/Item/"+Model.ResourceFileName)" asp-append-version="true" width="250px" height="250px">
+            </div>
+
+            <label class="ml-2 mt-2">
+                Change photo
+                <input type="checkbox" id="change_image" />
+            </label>
+            <div class="form-group" id="image_file">
+                <label asp-for="ResourceImageFile" class="control-label"></label>
+                <input asp-for="ResourceImageFile" accept="image/*" />
+                <span asp-validation-for="ResourceImageFile" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <a asp-action="Index" asp-controller="Item" class="btn btn-secondary mt-3 w-25 mx-3">Back</a>
+                <input type="submit" value="Update" class="btn btn-primary mt-3 w-25" />
+            </div>
+        </div>
+    </div>
+</form>
