@@ -12,15 +12,15 @@ using PIM_Dashboard.Models;
 namespace PIM_Dashboard.Migrations
 {
     [DbContext(typeof(PIMDbContext))]
-    [Migration("20231020013235_Initialize Db")]
-    partial class InitializeDb
+    [Migration("20240124202411_Db Initialized")]
+    partial class DbInitialized
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "7.0.12")
+                .HasAnnotation("ProductVersion", "8.0.1")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);

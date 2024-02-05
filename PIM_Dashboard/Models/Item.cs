@@ -17,7 +17,6 @@ public class Item
     public string ItemName { get; set; }
 
     [Required(ErrorMessage = "This field is required.")]
-
     [DisplayName("Item Status")]
     public string ItemStatus { get; set; }
 

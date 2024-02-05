@@ -24,8 +24,8 @@ public class DataInitializer
 
     private void SeedUsers()
     {
-        AddUserIfNotExists("admin@pimsystems.se", "Admin123#", new string[] { "Admin" });
-        AddUserIfNotExists("user@pimsystems.se", "User123#", new string[] { "User" });
+        AddUserIfNotExists("admin@pimsystems.se", "Admin123#", ["Admin"]);
+        AddUserIfNotExists("user@pimsystems.se", "User123#", ["User"]);
     }
 
     private void SeedRoles()

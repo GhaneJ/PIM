@@ -5,17 +5,17 @@
     <div class="form-group" hidden>
         <label asp-for="ItemPackageType" class="control-label"></label>
         <input asp-for="ItemPackageType" value="Wearable" class="form-control" />
-        <span asp-validation-for="ItemPackageType" class="text-danger"></span>
+        <span asp-validation-for=@Model.ItemPackageType class="text-danger"></span>
     </div>
-    <div class="form-group" hidden>
+    <div class="form-group">
         <label asp-for="ItemCreated" class="control-label"></label>
-        <input asp-for="ItemCreated" value="@(DateTime.Now)" class="form-control" />
-        <span asp-validation-for="ItemCreated" class="text-danger"></span>
+        <input asp-for="ItemCreated" class="form-control" />
+        <span asp-validation-for=@Model.ItemCreated class="text-danger"></span>
     </div>
     <div class="form-group mb-3">
         <label asp-for="ItemName" class="control-label"></label>
         <input asp-for="ItemName" class="form-control" />
-        <span asp-validation-for="ItemName" class="text-danger"></span>
+        <span asp-validation-for=@Model.ItemName class="text-danger"></span>
     </div>
     <div class="form-group mb-3">
         <label asp-for="ItemStatus"></label><br />
@@ -30,7 +30,7 @@
             <option value="PublishOnEcomFailed">Publish On Ecom Failed</option>
             <option value="PhasedOut">Phased Out</option>
         </select>
-        <span asp-validation-for="ItemStatus" class="text-danger"></span>
+        <span asp-validation-for=@Model.ItemStatus class="text-danger"></span>
     </div>
     <div class="form-group mb-3">
         <label asp-for="ItemBaseColor"></label><br />
@@ -45,7 +45,7 @@
             <option value="Brown">Brown</option>
             <option value="Yellow">Yellow</option>
         </select>
-        <span asp-validation-for="ItemBaseColor" class="text-danger"></span>
+        <span asp-validation-for=@Model.ItemBaseColor class="text-danger"></span>
     </div>
     <div class="form-group mb-3">
         <label asp-for="ItemBrandColor"></label><br />
@@ -60,7 +60,7 @@
             <option value="MountBrown">Mount Brown</option>
             <option value="SunnyYellow">Sunny Yellow</option>
         </select>
-        <span asp-validation-for="ItemBrandColor" class="text-danger"></span>
+        <span asp-validation-for=@Model.ItemBrandColor class="text-danger"></span>
     </div>
     <div class="form-group mb-3">
         <label asp-for="ItemSize"></label><br />
@@ -72,7 +72,7 @@
             <option value="L">L</option>
             <option value="XL">XL</option>
         </select>
-        <span asp-validation-for="ItemSize" class="text-danger"></span>
+        <span asp-validation-for=@Model.ItemSize class="text-danger"></span>
     </div>
     <div class="form-group mb-3">
         <span>Force Send:    </span>
@@ -84,7 +84,7 @@
         <span>    </span>
         <input asp-for="ItemForceSend" type="radio" value="False" />
         <label asp-for="ItemForceSend">False</label>
-        <span asp-validation-for="ItemForceSend" class="text-danger"></span>
+        <span asp-validation-for=@Model.ItemForceSend class="text-danger"></span>
     </div>
     <div class="form-group mb-3">
         <span>Category: </span>
@@ -96,12 +96,12 @@
         <span>    </span>
         <input asp-for="ItemCategory" type="radio" value="Underwear" />
         <label asp-for="ItemCategory">Underwear</label>
-        <span asp-validation-for="ItemCategory" class="text-danger"></span>
+        <span asp-validation-for=@Model.ItemCategory class="text-danger"></span>
     </div>
     <div class="form-group mb-3">
         <label asp-for="ResourceImageFile" class="control-label"></label>
         <input asp-for="ResourceImageFile" accept="image/*" />
-        <span asp-validation-for="ResourceImageFile" class="text-danger"></span>
+        <span asp-validation-for=@Model.ResourceImageFile class="text-danger"></span>
     </div>
     <div class="form-group mb-3">
         <input type="submit" value="Create" class="btn btn-primary" />

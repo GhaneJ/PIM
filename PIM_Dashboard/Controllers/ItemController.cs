@@ -13,9 +13,7 @@ public class ItemController : Controller
     private readonly PIMDbContext _context;
     private readonly IWebHostEnvironment _hostEnvironment;
     private readonly UserManager<IdentityUser> _userManager;
-    //readonly string baseURL = "https://localhost:7149/api/";
-
-    readonly string baseURL = "https://localhost:8100/";
+    readonly string baseURL = "https://localhost:7149/";
 
     public ItemController(PIMDbContext context, IWebHostEnvironment hostEnvironment, UserManager<IdentityUser> userManager)
     {
@@ -80,7 +78,6 @@ public class ItemController : Controller
         if (ModelState.IsValid)
         {
             model.ItemName = item.ItemName;
-            item.ItemCreated = DateTime.Now;
             model.ItemServiceInterval = item.ItemServiceInterval;
             model.ItemEngineType = item.ItemEngineType;
             model.ItemStatus = item.ItemStatus;
@@ -139,6 +136,7 @@ public class ItemController : Controller
             {
                 try
                 {
+                    Console.WriteLine(apiResponse.Result);
                     if (apiResponse.Result.Contains(item.ItemName))
                     {
                         clickedItem = DeserializeAPIResponseToEntity(apiResponse.Result, item.ItemName);
@@ -309,8 +307,7 @@ public class ItemController : Controller
             }
             catch (HttpRequestException e)
             {
-                Console.WriteLine("\nException Caught!");
-                Console.WriteLine("Message :{0} ", e.Message);
+                Console.WriteLine("\nException Caught!", e.Message);
             }
             //ViewData.Model = item;
         }

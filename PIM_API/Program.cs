@@ -32,7 +32,7 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseCors(options =>
-options.WithOrigins("https://localhost:6100")
+options.WithOrigins("https://localhost:7266")
 .AllowAnyMethod()
 .AllowAnyHeader()
 .AllowAnyOrigin());

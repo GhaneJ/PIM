@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace PIM_Dashboard.Migrations
 {
     /// <inheritdoc />
-    public partial class InitializeDb : Migration
+    public partial class DbInitialized : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
