@@ -9,23 +9,33 @@ using Microsoft.EntityFrameworkCore;
 [Route("[controller]")]
 public class ItemController : ControllerBase
 {
-    private readonly PriceAPIDbContext _dbContext;
+    private readonly PriceApiDbContext _dbContext;
 
-    public ItemController(PriceAPIDbContext dbContext)
+    public ItemController(PriceApiDbContext dbContext)
     {
         _dbContext = dbContext;
     }
 
     [HttpGet]
-    public ActionResult<IEnumerable<Item>> GetItems()
+    public async Task<ActionResult<IEnumerable<Item>>> GetItems()
     {
-        return _dbContext.Items.ToList();
+        var items = await _dbContext.Items.ToListAsync();
+        if (items == null)
+        {
+            return NotFound();
+        }
+        return items;
     }
 
     [HttpGet("itemName")]
-    public ActionResult<Item> GetItem(string itemName)
+    public async Task<ActionResult<Item>> GetItem(string itemName)
     {
-        return _dbContext.Items.FirstOrDefault(x => x.ItemName == itemName);
+        var item = await _dbContext.Items.FirstOrDefaultAsync(x => x.ItemName == itemName);
+        if (item == null)
+        {
+            return NotFound();
+        }
+        return Ok(item);
     }
 
     [HttpPost("createitem")]

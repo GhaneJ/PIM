@@ -14,6 +14,6 @@ public class Item
     [Required(ErrorMessage = "This field is required.")]
     [DisplayName("Item Name")]
     [Column(TypeName = "nvarchar(50)")]
-    public string? ItemName { get; set; }
+    public string ItemName { get; set; } = string.Empty;
     public double ItemRetailPrice { get; set; }
 }

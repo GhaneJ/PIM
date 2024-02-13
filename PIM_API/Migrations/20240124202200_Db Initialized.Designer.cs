@@ -10,7 +10,7 @@ using PIM_API.Data;
 
 namespace PIM_API.Migrations
 {
-    [DbContext(typeof(PriceAPIDbContext))]
+    [DbContext(typeof(PriceApiDbContext))]
     [Migration("20240124202200_Db Initialized")]
     partial class DbInitialized
     {

@@ -9,7 +9,7 @@ using PIM_API.Data;
 
 namespace PIM_API.Migrations
 {
-    [DbContext(typeof(PriceAPIDbContext))]
+    [DbContext(typeof(PriceApiDbContext))]
     partial class PriceAPIDbContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)

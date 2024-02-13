@@ -14,7 +14,7 @@ builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.Requ
     .AddRoles<IdentityRole>()
     .AddEntityFrameworkStores<PIMDbContext>();
 
-builder.Services.AddTransient<DataInitializer>();
+builder.Services.AddScoped<DataInitializer>();
 builder.Services.AddControllersWithViews();
 // Must be added to communicate to Server API
 builder.Services.AddHttpContextAccessor();

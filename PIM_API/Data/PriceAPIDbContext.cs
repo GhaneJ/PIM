@@ -3,9 +3,9 @@
 using PIM_API.Models;
 using Microsoft.EntityFrameworkCore;
 
-public class PriceAPIDbContext : DbContext
+public class PriceApiDbContext : DbContext
 {
-    public PriceAPIDbContext(DbContextOptions options) : base(options)
+    public PriceApiDbContext(DbContextOptions options) : base(options)
     {
     }
     public DbSet<Item> Items { get; set; }
